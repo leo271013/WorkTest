@@ -9,15 +9,18 @@ const routes = [
     path: "/",
     name: "home",
     component: HomeView,
+    meta: {
+      title: "JIN-RONG GUO's palette",
+    },
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    path: "/ApiPage",
+    name: "ApiPage",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+      import(/* webpackChunkName: "ApiPage" */ "../views/ApiPage.vue"),
+    meta: {
+      title: "看看api！",
+    },
   },
 ];
 
@@ -25,6 +28,10 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
+});
+
+router.afterEach((to) => {
+  document.title = to.meta.title;
 });
 
 export default router;
